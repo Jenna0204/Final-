@@ -85,3 +85,22 @@ cds$mean = rowMeans(cds[2:4])
 head(cds,6)
 
 ```
+
+
+
+```{r}
+#Listing 10 genes with the highest mean expression
+
+order(-cds$mean)
+sorted <- cds[order(-cds$mean),]
+sorted[,c(4,ncol(sorted))]
+head(sorted[,c(4,ncol(sorted))],10)
+
+
+
+#Listing number of genes with a mean less than 10 
+
+subset(cds,mean < 10)
+nrow(subset(cds,mean < 10))
+nrow(cds)
+```
