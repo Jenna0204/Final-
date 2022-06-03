@@ -135,6 +135,8 @@ mtext(HEADER)
 
 Bioinformatics Assessment Task 3 (Part 2)
 
+#Ecoli
+
 Downloads the ecoli file from ensemble bacteria website
 library("R.utils")
 URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/cds/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.cds.all.fa.gz"
@@ -173,5 +175,200 @@ boxplot(len,ylab="sequence length (bp)")
 
 
 
+
+
+
+
+
+#Acetobacter
+
+library("R.utils")
+
+
+
+#downloading acetobacter file 
+
+URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_80_collection/acetobacter_aceti_gca_002005445/cds/Acetobacter_aceti_gca_002005445.ASM200544v1.cds.all.fa.gz"
+download.file(URL,destfile="acetobacteraceti_cds1.fa.gz")
+gunzip("acetobacteraceti_cds1.fa.gz")
+list.files()
+
+library("seqinr")
+cds1 <- seqinr::read.fasta("acetobacteraceti_cds1.fa")
+str(head(cds1))
+
+#length of acetobaceter coding sequences 
+
+length(cds1)
+
+head(summary(cds1))
+
+str(summary(cds1))
+
+head(summary(cds1)[,1])
+
+len1 <- as.numeric(summary(cds1)[,1])
+
+sum(len1)
+
+lena <- sapply(X=cds1,FUN=length)
+
+sum(lena) 
+
+#mean of acetobacter coding sequences 
+
+mean(len1)
+
+#median of acetobacter coding sequences 
+
+median(len1)
+
+boxplot(len1)
+
+#boxlot for acetobacter
+
+boxplot(len1,ylab="sequence length (bp)")
+```
+
+
+
+
+```{r}
+
+#frequency of dna bases
+
+GC(cds[[1]])
+
+count(cds[[1]],1)
+
+count(cds[[1]],2)
+
+count(cds[[1]],3)
+
+summary(cds[1:3])
+
+sum(sapply(cds[1:3],length))
+
+length(unlist(cds[1:3]))
+
+dna <- unlist(cds)
+
+GC(dna)
+
+dna_composition <- count(dna,1)
+
+#barplot for nucleotides
+
+barplot(dna_composition,xlab="nucleotides",ylab="frequency", main="E coli CDS composition")
+
+dna_composition/sum(dna_composition)
+
+dna_proportion <- dna_composition/sum(dna_composition)
+
+barplot(dna_proportion,xlab="nucleotides",ylab="proportion", main="E coli CDS composition")
+
+grid()
+
+translate(cds[[1]])
+
+prot <- lapply(cds,translate)
+
+# define the amino acid alphabet
+
+aa <- unique(prot[[2]])
+aa <- aa[aa != "*"]
+length(aa)
+
+count(prot[[1]],wordsize=1,alphabet=aa)
+
+count(prot[[2]],wordsize=1,alphabet=aa)
+
+#codon usage
+
+uco(cds[[2]])
+
+uco(cds[[2]],index="rscu")
+
+uco(cds[[2]],index="rscu",as.data.frame=TRUE)
+
+# k mer profiling
+
+prots <- unlist(prot)
+
+mycounts <- count(prots,wordsize=3,alphabet=aa)
+
+str(mycounts)
+
+head(mycounts)
+
+myfreq <- count(prots,wordsize=3,alphabet=aa,freq=TRUE)
+```
+
+
+
+```{r}
+GC(cds1[[1]])
+
+count(cds1[[1]],1)
+
+count(cds1[[1]],2)
+
+count(cds1[[1]],3)
+
+summary(cds1[1:3])
+
+sum(sapply(cds1[1:3],length))
+
+length(unlist(cds1[1:3]))
+
+dna1 <- unlist(cds1)
+
+GC(dna1)
+
+dna1_composition <- count(dna1,1)
+
+barplot(dna1_composition,xlab="nucleotides",ylab="frequency", main="Acetobacteraceti CDS composition")
+
+dna1_composition/sum(dna1_composition)
+
+dna1_proportion <- dna1_composition/sum(dna1_composition)
+
+barplot(dna1_proportion,xlab="nucleotides",ylab="proportion", main="Acetobacteraceti CDS composition")
+
+grid()
+
+translate(cds1[[1]])
+
+prot1 <- lapply(cds1,translate)
+
+# define the amino acid alphabet
+bb <- unique(prot1[[2]])
+
+
+
+bb <- bb[bb != "*"]
+length(bb)
+
+count(prot1[[1]],wordsize=1,alphabet=bb)
+
+count(prot1[[2]],wordsize=1,alphabet=bb)
+
+uco(cds1[[2]])
+
+uco(cds1[[2]],index="rscu")
+
+uco(cds1[[2]],index="rscu",as.data.frame=TRUE)
+
+#k mer profiling
+
+protsAA <- unlist(prot1)
+
+mycountsAA <- count(protsAA,wordsize=3,alphabet=bb)
+
+str(mycountsAA)
+
+head(mycountsAA)
+
+myfreqAA <- count(protsAA, wordsize = 3, alphabet=bb, freq = TRUE)
 
 
