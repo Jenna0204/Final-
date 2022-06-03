@@ -1,7 +1,7 @@
 ---
-title: "hgghghjgjgjh"
-author: "Hityshi"
-date: '2022-06-03'
+title: "Assessment Task 3 Part-1"
+author: "Hityshi & Janhavi"
+date: '2022-05-26'
 output: html_document
 ---
 
@@ -150,9 +150,6 @@ site1gr/mean(site1[,4])
 
 site2gr = mean(site2[,6])-mean(site2[,4])
 site2gr/mean(site2[,4])
-
-
-
 
 
 t.test(cdsA$Circumf_2020_cm - cdsA$Circumf_2010_cm~cdsA$Site)
