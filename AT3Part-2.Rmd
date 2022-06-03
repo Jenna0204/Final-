@@ -1,7 +1,8 @@
 ---
-title: '1'
+title: 'Bioinformatics Assessment Task-3 Part 2'
+author: "Janhavi Gowda & Hityshi Naidu"
 output: html_document
-date: '2022-06-03'
+date: '2022-06-02'
 ---
 
 ```{r}
