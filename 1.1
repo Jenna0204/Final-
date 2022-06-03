@@ -70,3 +70,18 @@ row.names(cds) = cds$Name_Description
 row.names(cds)
 ```
 
+
+```{r}
+#Displaying table of values for the first 6 genes
+
+head(cds,6)
+
+
+
+#Adding a column displaying the means of other columns for the first six genes
+
+head(rowMeans(cds[2:4])) 
+cds$mean = rowMeans(cds[2:4])
+head(cds,6)
+
+```
