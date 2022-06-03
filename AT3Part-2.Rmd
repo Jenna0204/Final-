@@ -4,42 +4,6 @@ output: html_document
 date: '2022-06-03'
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```{r}
 library("R.utils")
 
@@ -52,16 +16,29 @@ library("seqinr")
 cds <- seqinr::read.fasta("ecoli_cds.fa")
 str(head(cds))
 
-library("R.utils")
+length(cds)
 
+head(summary(cds))
 
-URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_80_collection/acetobacter_aceti_gca_002005445/cds/Acetobacter_aceti_gca_002005445.ASM200544v1.cds.all.fa.gz"
-download.file(URL,destfile="acetobacteraceti_cds1.fa.gz")
-gunzip("acetobacteraceti_cds1.fa.gz")
-list.files()
+str(summary(cds))
 
-library("seqinr")
-cds1 <- seqinr::read.fasta("acetobacteraceti_cds1.fa")
-str(head(cds1))
+head(summary(cds)[,1])
+
+len <- as.numeric(summary(cds)[,1])
+
+sum(len)
+
+lene <- sapply(X=cds,FUN=length)
+
+sum(lene) 
+
+mean(len)
+
+median(len)
+
+boxplot(len)
+
+boxplot(len,ylab="sequence length (bp)")
 ```
+
 
