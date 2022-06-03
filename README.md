@@ -21,3 +21,22 @@ row.names(cds)
 
 To show the values of the first 6 genes
 head(cds,6)
+
+To add a column with the means of the other columns 
+head(rowMeans(cds[2:4])) 
+cds$mean = rowMeans(cds[2:4])
+head(cds,6)
+
+To list 10 genes with the highest means 
+order(-cds$mean)
+sorted <- cds[order(-cds$mean),]
+sorted[,c(4,ncol(sorted))]
+head(sorted[,c(4,ncol(sorted))],10)
+
+To list number of genes with a mean less than 10 
+subset(cds,mean < 10)
+nrow(subset(cds,mean < 10))
+nrow(cds)
+
+To plot a histogram 
+hist(cds$mean,xlab="Mean Values", main="Histogram of Mean Values")
