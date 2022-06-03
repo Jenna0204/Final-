@@ -113,4 +113,21 @@ nrow(cds)
 #Creating a Histogram of the mean values
 
 hist(cds$mean,xlab="Mean Values", main="Histogram of Mean Values")
+
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
