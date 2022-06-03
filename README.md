@@ -133,6 +133,43 @@ mtext(HEADER)
 
 
 
+Bioinformatics Assessment Task 3 (Part 2)
+
+Downloads the ecoli file from ensemble bacteria website
+library("R.utils")
+URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/cds/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.cds.all.fa.gz"
+download.file(URL,destfile="ecoli_cds.fa.gz")
+
+Unzipsand lists the zipped files
+gunzip("ecoli_cds.fa.gz")
+list.files()
+
+library("seqinr")
+cds <- seqinr::read.fasta("ecoli_cds.fa")
+
+Displays structure of the data
+str(head(cds))
+
+Gives length of coding sequence for ecoli
+length(cds)
+
+head(summary(cds))
+str(summary(cds))
+head(summary(cds)[,1])
+len <- as.numeric(summary(cds)[,1])
+sum(len)
+lene <- sapply(X=cds,FUN=length)
+sum(lene) 
+
+Gives the mean of ecoli coding sequences
+mean(len)
+
+Gives the median of ecoli coding sequences
+median(len)
+
+Creates boxplot for ecoli
+boxplot(len)
+boxplot(len,ylab="sequence length (bp)")
 
 
 
