@@ -100,3 +100,77 @@ boxplot(len1)
 boxplot(len1,ylab="sequence length (bp)")
 ```
 
+
+
+
+```{r}
+
+#frequency of dna bases
+
+GC(cds[[1]])
+
+count(cds[[1]],1)
+
+count(cds[[1]],2)
+
+count(cds[[1]],3)
+
+summary(cds[1:3])
+
+sum(sapply(cds[1:3],length))
+
+length(unlist(cds[1:3]))
+
+dna <- unlist(cds)
+
+GC(dna)
+
+dna_composition <- count(dna,1)
+
+#barplot for nucleotides
+
+barplot(dna_composition,xlab="nucleotides",ylab="frequency", main="E coli CDS composition")
+
+dna_composition/sum(dna_composition)
+
+dna_proportion <- dna_composition/sum(dna_composition)
+
+barplot(dna_proportion,xlab="nucleotides",ylab="proportion", main="E coli CDS composition")
+
+grid()
+
+translate(cds[[1]])
+
+prot <- lapply(cds,translate)
+
+# define the amino acid alphabet
+
+aa <- unique(prot[[2]])
+aa <- aa[aa != "*"]
+length(aa)
+
+count(prot[[1]],wordsize=1,alphabet=aa)
+
+count(prot[[2]],wordsize=1,alphabet=aa)
+
+#codon usage
+
+uco(cds[[2]])
+
+uco(cds[[2]],index="rscu")
+
+uco(cds[[2]],index="rscu",as.data.frame=TRUE)
+
+# k mer profiling
+
+prots <- unlist(prot)
+
+mycounts <- count(prots,wordsize=3,alphabet=aa)
+
+str(mycounts)
+
+head(mycounts)
+
+myfreq <- count(prots,wordsize=3,alphabet=aa,freq=TRUE)
+```
+
