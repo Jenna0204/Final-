@@ -119,6 +119,37 @@ hist(cds$mean,xlab="Mean Values", main="Histogram of Mean Values")
 
 
 
+```{r}
+URL= "https://raw.githubusercontent.com/markziemann/SLE712_files/master/assessment_task3/bioinfo_asst3_part1_files/growth_data.csv"
+NAME= "growth_data.csv"
+download.file(URL,destfile=NAME)
+
+
+
+read.csv("growth_data.csv")
+
+cdsA = read.csv("growth_data.csv")
+head(cdsA)
+colnames(cdsA)
+
+
+##Read the document,and displays the column name
+
+
+
+cdsA[cdsA$Site=="northeast",]
+site1 = cdsA[cdsA$Site=="northeast",]
+cdsA[cdsA$Site=="southwest",]
+site2 = cdsA[cdsA$Site=="southwest",]
+mean(site1[,3])
+sd(site1[,3])
+mean(site1[,6])
+sd(site1[,6])
+mean(site2[,3])
+sd(site2[,3])
+mean(site2[,6])
+sd(site2[,6])
+```
 
 
 
