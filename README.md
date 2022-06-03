@@ -228,12 +228,12 @@ boxplot(len1)
 #boxlot for acetobacter
 
 boxplot(len1,ylab="sequence length (bp)")
-```
 
 
 
 
-```{r}
+
+
 
 #frequency of dna bases
 
@@ -302,11 +302,11 @@ str(mycounts)
 head(mycounts)
 
 myfreq <- count(prots,wordsize=3,alphabet=aa,freq=TRUE)
-```
 
 
 
-```{r}
+
+
 GC(cds1[[1]])
 
 count(cds1[[1]],1)
