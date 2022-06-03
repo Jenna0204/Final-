@@ -133,10 +133,6 @@ head(cdsA)
 colnames(cdsA)
 
 
-##Read the document,and displays the column name
-
-
-
 cdsA[cdsA$Site=="northeast",]
 site1 = cdsA[cdsA$Site=="northeast",]
 cdsA[cdsA$Site=="southwest",]
@@ -165,8 +161,6 @@ boxplot(site2$Circumf_2005_cm, site2$Circumf_2020_cm,
         names = c("start","end"))
 
 
-##The data has already been sorted in the previous step, so you just need to do the box plot in this step.
-
 
 site1gr = mean(site1[,6])-mean(site1[,4])
 site1gr/mean(site1[,4])
@@ -175,11 +169,6 @@ site1gr/mean(site1[,4])
 site2gr = mean(site2[,6])-mean(site2[,4])
 site2gr/mean(site2[,4])
 
-
-
-##Calculation of the growth rate
-##step1: The present value is subtracted from the past value
-##step2: the result is divided by the past value
 
 
 
