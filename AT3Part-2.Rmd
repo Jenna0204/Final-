@@ -5,6 +5,8 @@ date: '2022-06-03'
 ---
 
 ```{r}
+#ecoli file download
+
 library("R.utils")
 
 URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/cds/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.cds.all.fa.gz"
@@ -15,6 +17,8 @@ list.files()
 library("seqinr")
 cds <- seqinr::read.fasta("ecoli_cds.fa")
 str(head(cds))
+
+#ecoli length of coding sequence 
 
 length(cds)
 
@@ -32,9 +36,15 @@ lene <- sapply(X=cds,FUN=length)
 
 sum(lene) 
 
+#mean of ecoli coding sequences
+
 mean(len)
 
+#median of ecoli coding sequences
+
 median(len)
+
+#boxplot for ecoli
 
 boxplot(len)
 
@@ -46,6 +56,8 @@ boxplot(len,ylab="sequence length (bp)")
 library("R.utils")
 
 
+#downloading acetobacter file 
+
 URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_80_collection/acetobacter_aceti_gca_002005445/cds/Acetobacter_aceti_gca_002005445.ASM200544v1.cds.all.fa.gz"
 download.file(URL,destfile="acetobacteraceti_cds1.fa.gz")
 gunzip("acetobacteraceti_cds1.fa.gz")
@@ -54,6 +66,8 @@ list.files()
 library("seqinr")
 cds1 <- seqinr::read.fasta("acetobacteraceti_cds1.fa")
 str(head(cds1))
+
+#length of acetobaceter coding sequences 
 
 length(cds1)
 
@@ -71,11 +85,17 @@ lena <- sapply(X=cds1,FUN=length)
 
 sum(lena) 
 
+#mean of acetobacter coding sequences 
+
 mean(len1)
+
+#median of acetobacter coding sequences 
 
 median(len1)
 
 boxplot(len1)
+
+#boxlot for acetobacter
 
 boxplot(len1,ylab="sequence length (bp)")
 ```
