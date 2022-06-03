@@ -42,3 +42,41 @@ boxplot(len,ylab="sequence length (bp)")
 ```
 
 
+```{r}
+library("R.utils")
+
+
+URL="http://ftp.ensemblgenomes.org/pub/bacteria/release-53/fasta/bacteria_80_collection/acetobacter_aceti_gca_002005445/cds/Acetobacter_aceti_gca_002005445.ASM200544v1.cds.all.fa.gz"
+download.file(URL,destfile="acetobacteraceti_cds1.fa.gz")
+gunzip("acetobacteraceti_cds1.fa.gz")
+list.files()
+
+library("seqinr")
+cds1 <- seqinr::read.fasta("acetobacteraceti_cds1.fa")
+str(head(cds1))
+
+length(cds1)
+
+head(summary(cds1))
+
+str(summary(cds1))
+
+head(summary(cds1)[,1])
+
+len1 <- as.numeric(summary(cds1)[,1])
+
+sum(len1)
+
+lena <- sapply(X=cds1,FUN=length)
+
+sum(lena) 
+
+mean(len1)
+
+median(len1)
+
+boxplot(len1)
+
+boxplot(len1,ylab="sequence length (bp)")
+```
+
