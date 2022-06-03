@@ -153,6 +153,49 @@ sd(site2[,6])
 
 
 
+```{r}
+boxplot(site1$Circumf_2005_cm, site1$Circumf_2020_cm,
+        ylab="circumference",
+        main="The northeast position starts and ends with the data",
+        names = c("start","end"))
+
+boxplot(site2$Circumf_2005_cm, site2$Circumf_2020_cm,
+        ylab="circumference",
+        main="The southwest position starts and ends with the data",
+        names = c("start","end"))
+
+
+##The data has already been sorted in the previous step, so you just need to do the box plot in this step.
+
+
+site1gr = mean(site1[,6])-mean(site1[,4])
+site1gr/mean(site1[,4])
+
+
+site2gr = mean(site2[,6])-mean(site2[,4])
+site2gr/mean(site2[,4])
+
+
+
+##Calculation of the growth rate
+##step1: The present value is subtracted from the past value
+##step2: the result is divided by the past value
+
+
+
+
+t.test(cdsA$Circumf_2020_cm - cdsA$Circumf_2010_cm~cdsA$Site)
+boxplot(cdsA$Circumf_2020_cm - cdsA$Circumf_2010_cm~cdsA$Site,xlab = "location",ylab = "growth")
+PVAL = t.test(cdsA$Circumf_2020_cm - cdsA$Circumf_2010_cm~cdsA$Site)$p.value
+HEADER=paste("P:",PVAL)
+mtext(HEADER)
+
+wilcox.test(cdsA$Circumf_2020_cm - cdsA$Circumf_2010_cm~cdsA$Site)
+boxplot(cdsA$Circumf_2020_cm - cdsA$Circumf_2010_cm~cdsA$Site,xlab = "location",ylab = "growth")
+PVAL = wilcox.test(cdsA$Circumf_2020_cm - cdsA$Circumf_2010_cm~cdsA$Site)$p.value
+HEADER=paste("P:",PVAL)
+mtext(HEADER)
+```
 
 
 
