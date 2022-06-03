@@ -1,0 +1,116 @@
+---
+title: '1'
+author: "Hityshi"
+date: '2022-06-03'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+#gene_expression.tsv
+
+#Reading in the file 
+
+URL= "https://raw.githubusercontent.com/markziemann/SLE712_files/master/assessment_task3/bioinfo_asst3_part1_files/gene_expression.tsv"
+NAME= "gene_expression.tsv"
+download.file(URL,destfile=NAME)
+
+
+
+#Changing the row names from a numerical value to the names of the gene identifiers
+
+head(read.delim("gene_expression.tsv"))
+head(read.delim("gene_expression.tsv"))
+str(read.delim("gene_expression.tsv"))
+cds = read.delim("gene_expression.tsv")
+head(cds)
+row.names(cds)
+row.names(cds) = cds$Name_Description
+row.names(cds)
+```
+
+
+```{r}
+#Displaying table of values for the first 6 genes
+
+head(cds,6)
+
+
+
+#Adding a column displaying the means of other columns for the first six genes
+
+head(rowMeans(cds[2:4])) 
+cds$mean = rowMeans(cds[2:4])
+head(cds,6)
+
+```
+
+
+
+```{r}
+#Listing 10 genes with the highest mean expression
+
+order(-cds$mean)
+sorted <- cds[order(-cds$mean),]
+sorted[,c(4,ncol(sorted))]
+head(sorted[,c(4,ncol(sorted))],10)
+
+
+
+#Listing number of genes with a mean less than 10 
+
+subset(cds,mean < 10)
+nrow(subset(cds,mean < 10))
+nrow(cds)
+```
+
+
+
+
+
+```{r}
+#Creating a Histogram of the mean values
+
+hist(cds$mean,xlab="Mean Values", main="Histogram of Mean Values")
+```
